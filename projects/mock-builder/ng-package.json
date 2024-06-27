@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/mock-builder",
+  "assets": ["./assets"],
+  "allowedNonPeerDependencies": [
+    "monaco-editor",
+    "msw",
+    "ngx-monaco-editor-v2",
+    "tslib",
+    "uuid"
+  ],
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}
