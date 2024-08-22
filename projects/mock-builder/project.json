@@ -1,0 +1,37 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "mock-builder",
+  "projectType": "library",
+  "sourceRoot": "projects/mock-builder/src",
+  "prefix": "lib",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "project": "projects/mock-builder/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/mock-builder/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "projects/mock-builder/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{workspaceRoot}/dist/mock-builder"
+      ]
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "tsConfig": "projects/mock-builder/tsconfig.spec.json",
+        "polyfills": [
+          "zone.js",
+          "zone.js/testing"
+        ]
+      }
+    }
+  }
+}
