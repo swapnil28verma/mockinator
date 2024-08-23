@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { startMockerWorker } from './app/utils/mock-service-worker';
+import { startMockerWorker } from 'mock-builder';
 
 startMockerWorker().then(() => {
   bootstrapApplication(AppComponent, appConfig)

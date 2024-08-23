@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MockBuilderComponent } from '../../projects/mock-builder/src/lib/mock-builder.component';
+import { MockBuilderComponent } from 'mock-builder';
 
 @Component({
   selector: 'app-root',
