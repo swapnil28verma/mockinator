@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MockBuilderComponent } from './mock-builder.component';
+import { MockBuilderComponent } from 'mock-builder';
 
 describe('MockBuilderComponent', () => {
   let component: MockBuilderComponent;
@@ -11,7 +11,7 @@ describe('MockBuilderComponent', () => {
       imports: [MockBuilderComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(MockBuilderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

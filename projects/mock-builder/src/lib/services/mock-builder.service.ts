@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { http, HttpResponse } from 'msw';
-import { addNewRequestHandler, deleteRequestHandler } from './utils/mock-service-worker';
-import { RequestMock } from './models/request.mock';
-import { RequestType } from './models/request.type';
+import { addNewRequestHandler, deleteRequestHandler } from '../utils';
+import { RequestMock } from '../models/request.mock';
+import { RequestType } from '../models/request.type';
 
 @Injectable({
   providedIn: 'root'

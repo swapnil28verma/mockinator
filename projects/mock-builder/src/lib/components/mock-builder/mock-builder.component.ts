@@ -11,9 +11,9 @@ import { CommonModule, NgIf, UpperCasePipe } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
-import { MockBuilderService } from './mock-builder.service';
-import { RequestType } from './models/request.type';
-import { RequestMock } from './models/request.mock';
+import { MockBuilderService } from '../../services';
+import { RequestType } from '../../models/request.type';
+import { RequestMock } from '../../models/request.mock';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
