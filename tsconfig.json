@@ -10,7 +10,7 @@
     "noImplicitReturns": true,
     "paths": {
       "mock-builder": [
-        "./dist/mock-builder"
+        "./projects/mock-builder/src/public-api.ts"
       ]
     },
     "noFallthroughCasesInSwitch": true,
