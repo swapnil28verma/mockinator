@@ -1,5 +1,3 @@
-@import '../../utils/mat-selectors';
-
 .app-api-mock-generator {
 	height: 100%;
 	display: flex;
@@ -8,10 +6,7 @@
 	.request-config-container {
 		display: flex;
 		flex-direction: row;
-
-		mat-form-field {
-			padding: 0 15px;
-		}
+		column-gap: 10px;
 
 		.request-url-field {
 			width: 100%;
@@ -31,10 +26,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+		column-gap: 10px;
 		padding: 6px 15px;
-
-		#{$mat-raised-button} {
-			margin: 0 10px;
-		}
 	}
 }

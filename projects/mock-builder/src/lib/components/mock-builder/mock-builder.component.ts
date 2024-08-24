@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MockBuilderService } from '../../services';
 import { ApiMockConfigComponent } from "../api-mock-generator/api-mock-config.component";
 import { ApiMockListComponent } from "../api-mock-list/api-mock-list.component";
+import { ApiMockTestComponent } from "../api-mock-test/api-mock-test.component";
 
 @Component({
 	selector: 'mock-builder',
@@ -14,6 +15,7 @@ import { ApiMockListComponent } from "../api-mock-list/api-mock-list.component";
 		MatTabsModule,
 		ApiMockConfigComponent,
 		ApiMockListComponent,
+		ApiMockTestComponent,
 	],
 	templateUrl: './mock-builder.component.html',
 	styleUrl: './mock-builder.component.scss',
