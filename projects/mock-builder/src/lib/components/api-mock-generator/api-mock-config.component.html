@@ -1,0 +1,27 @@
+<h3>Request</h3>
+<div class="request-config-container">
+	<mat-form-field appearance="outline">
+		<mat-label>API type</mat-label>
+		<mat-select [(ngModel)]="requestType">
+			<mat-option value="{{RequestTypeEnum.GET}}">GET</mat-option>
+			<mat-option value="{{RequestTypeEnum.PUT}}">PUT</mat-option>
+			<mat-option value="{{RequestTypeEnum.POST}}">POST</mat-option>
+			<mat-option value="{{RequestTypeEnum.DELETE}}">DELETE</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-form-field appearance="outline" class="request-url-field">
+		<mat-label>API URL</mat-label>
+		<input matInput [(ngModel)]="requestUrl">
+	</mat-form-field>
+</div>
+<h3>Response</h3>
+<div class="response-config-container">
+	<ngx-monaco-editor [options]="monacoOptions"
+					   [(ngModel)]="responseBody"
+					   class="response-body-json-editor"
+	></ngx-monaco-editor>
+</div>
+<div class="mockinator-new-mock-actions">
+	<button mat-raised-button (click)="clearMockConfiguration()">Reset</button>
+	<button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+</div>

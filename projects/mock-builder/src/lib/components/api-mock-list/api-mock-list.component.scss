@@ -1,0 +1,33 @@
+.app-api-mock-list {
+	.saved-mocks {
+		tr.response-body-row {
+			height: 0;
+		}
+
+		.response-body-container {
+			padding: 15px;
+		}
+
+		.mock-header,
+		.mock-row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.mat-column-type {
+			display: flex;
+			justify-content: center;
+			width: 20%;
+		}
+
+		.mat-column-url {
+			width: 70%;
+		}
+
+		.mat-column-actions {
+			display: flex;
+			justify-content: center;
+			width: 10%;
+		}
+	}
+}

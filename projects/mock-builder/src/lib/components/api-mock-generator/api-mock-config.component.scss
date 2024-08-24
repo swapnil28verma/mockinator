@@ -1,0 +1,40 @@
+@import '../../utils/mat-selectors';
+
+.app-api-mock-generator {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.request-config-container {
+		display: flex;
+		flex-direction: row;
+
+		mat-form-field {
+			padding: 0 15px;
+		}
+
+		.request-url-field {
+			width: 100%;
+		}
+	}
+
+	.response-config-container {
+		flex: 1;
+
+		.response-body-json-editor {
+			padding: 0 15px;
+			height: 100%;
+		}
+	}
+
+	.mockinator-new-mock-actions {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		padding: 6px 15px;
+
+		#{$mat-raised-button} {
+			margin: 0 10px;
+		}
+	}
+}
