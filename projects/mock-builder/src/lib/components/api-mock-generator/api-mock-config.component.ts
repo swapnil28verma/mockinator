@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, inject, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RequestType } from "../../models/request.type";
 import { MatButton } from "@angular/material/button";
@@ -10,6 +10,8 @@ import { MonacoEditorModule } from "ngx-monaco-editor-v2";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RequestMock } from "../../models/request.mock";
 import { monacoOptions } from "../../utils";
+import { MockBuilderService } from "../../services";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
 	selector: 'app-api-mock-config',
@@ -23,6 +25,9 @@ import { monacoOptions } from "../../utils";
 export class ApiMockConfigComponent {
 	protected readonly monacoOptions = monacoOptions;
 	protected readonly RequestTypeEnum = RequestType;
+	readonly mockBuilderService: MockBuilderService = inject(MockBuilderService);
+	readonly snackbarService: MatSnackBar = inject(MatSnackBar);
+
 
 	requestType = RequestType.GET;
 	requestUrl = '';
@@ -39,6 +44,8 @@ export class ApiMockConfigComponent {
 	onSubmit() {
 		const newMock = new RequestMock(this.requestType, this.requestUrl, this.responseBody);
 		this.onMockSubmit.emit(newMock);
+		this.mockBuilderService.addMock(newMock);
+		this.snackbarService.open('New mock added successfully', '', {duration: 5000});
 		this.clearMockConfiguration();
 	}
 }
