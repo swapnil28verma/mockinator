@@ -29,12 +29,14 @@ export class ApiMockTestComponent {
 	requestUrl = '';
 	responseBody = '';
 	showResponseBody = false;
+	disableButton: boolean = true;
 
 	clearMockConfiguration() {
 		this.requestType = RequestType.GET;
 		this.requestUrl = '';
 		this.responseBody = '';
 		this.showResponseBody = false;
+		this.disableButton = true;
 	}
 
 	onTestMock() {
@@ -43,5 +45,9 @@ export class ApiMockTestComponent {
 			this.responseBody = JSON.stringify(response, undefined, 2);
 			this.showResponseBody = StringUtils.isNotEmpty(this.responseBody);
 		});
+	}
+
+	onUrlUpdated() {
+		this.disableButton = StringUtils.isEmpty(this.requestUrl);
 	}
 }

@@ -11,12 +11,12 @@
 		</mat-form-field>
 		<mat-form-field appearance="outline" class="request-url-field">
 			<mat-label>API URL</mat-label>
-			<input matInput [(ngModel)]="requestUrl">
+			<input matInput [(ngModel)]="requestUrl" (ngModelChange)="onUrlUpdated()">
 		</mat-form-field>
 	</div>
 	<div class="mock-actions">
-		<button mat-raised-button (click)="clearMockConfiguration()">Reset</button>
-		<button mat-raised-button color="primary" (click)="onTestMock()">Submit</button>
+		<button mat-raised-button (click)="clearMockConfiguration()" [disabled]="disableButton">Reset</button>
+		<button mat-raised-button color="primary" (click)="onTestMock()" [disabled]="disableButton">Submit</button>
 	</div>
 </div>
 <div class="response-container">
