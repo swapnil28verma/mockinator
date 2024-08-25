@@ -6,10 +6,11 @@ import { MatInput } from "@angular/material/input";
 import { MatOption } from "@angular/material/autocomplete";
 import { MatSelect } from "@angular/material/select";
 import { FormsModule } from "@angular/forms";
-import { MockBuilderService, monacoOptionsReadOnly, StringUtils } from "mock-builder";
 import { MonacoEditorModule } from "ngx-monaco-editor-v2";
 import { RequestMock } from "../../models/request.mock";
 import { MatButton } from "@angular/material/button";
+import { monacoOptionsReadOnly, StringUtils } from '../../utils';
+import { MockBuilderService } from "../../services";
 
 @Component({
 	selector: 'app-api-mock-test',
