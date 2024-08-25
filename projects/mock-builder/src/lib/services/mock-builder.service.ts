@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { http, HttpResponse } from 'msw';
 import { addNewRequestHandler, deleteRequestHandler } from '../utils';
@@ -10,7 +10,7 @@ import { RequestType } from '../models/request.type';
   providedIn: 'root'
 })
 export class MockBuilderService {
-  private savedMockSource: Subject<RequestMock[]> = new Subject<RequestMock[]>();
+  private savedMockSource: BehaviorSubject<RequestMock[]> = new BehaviorSubject<RequestMock[]>([]);
   private savedMocks: RequestMock[] = [];
   savedMocks$ = this.savedMockSource.asObservable();
 

@@ -6,7 +6,9 @@
     "start": "nx serve",
     "build": "nx build",
     "watch": "nx build --watch --configuration development",
-    "test": "nx test"
+    "test": "nx test",
+    "build-pack-lib": "nx run mock-builder:build && cd dist/mock-builder && npm pack",
+    "install-lib": "npm run build-pack-lib && npm install ./dist/mock-builder/mock-builder-0.0.1.tgz"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +22,7 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "mock-builder": "file:dist/mock-builder/mock-builder-0.0.1.tgz",
     "monaco-editor": "^0.44.0",
     "msw": "^2.3.1",
     "ngx-monaco-editor-v2": "^17.0.1",

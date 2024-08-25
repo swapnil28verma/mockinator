@@ -1,1 +1,8 @@
-<mock-builder></mock-builder>
+<div class="app-navbar">
+	<a [routerLink]="'build-new-mock'">Build Mocks</a>
+	<a [routerLink]="'test-mock'">Test Mocks</a>
+	<a [routerLink]="'list-all-mocks'">List Mocks</a>
+</div>
+<div class="app-main-body">
+	<router-outlet></router-outlet>
+</div>
