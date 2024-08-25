@@ -40,7 +40,7 @@ export class ApiMockTestComponent {
 	onTestMock() {
 		const mock = new RequestMock(this.requestType, this.requestUrl, '');
 		this.mockBuilderService.testMock(mock).subscribe((response) => {
-			this.responseBody = JSON.stringify(response);
+			this.responseBody = JSON.stringify(response, undefined, 2);
 			this.showResponseBody = StringUtils.isNotEmpty(this.responseBody);
 		});
 	}
