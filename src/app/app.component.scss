@@ -1,0 +1,11 @@
+.app-root {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 0 10px;
+
+	.app-main-body {
+		display: flex;
+		flex: 1;
+	}
+}
