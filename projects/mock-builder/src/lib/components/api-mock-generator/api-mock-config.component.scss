@@ -1,0 +1,32 @@
+.app-api-mock-generator {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.request-config-container {
+		display: flex;
+		flex-direction: row;
+		column-gap: 10px;
+
+		.request-url-field {
+			width: 100%;
+		}
+	}
+
+	.response-config-container {
+		flex: 1;
+
+		.response-body-json-editor {
+			padding: 0 15px;
+			height: 100%;
+		}
+	}
+
+	.mockinator-new-mock-actions {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		column-gap: 10px;
+		padding: 6px 15px;
+	}
+}

@@ -1,0 +1,47 @@
+<table mat-table [dataSource]="savedMocks"
+	   [multiTemplateDataRows]="true"
+	   class="saved-mocks">
+	<ng-container matColumnDef="type">
+		<th mat-header-cell *matHeaderCellDef>Request Type</th>
+		<td mat-cell *matCellDef="let mock"> {{ mock.type | uppercase }} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="url">
+		<th mat-header-cell *matHeaderCellDef>Request URL</th>
+		<td mat-cell *matCellDef="let mock"> {{ mock.url }} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="actions">
+		<th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+		<td mat-cell *matCellDef="let mock">
+			<button mat-icon-button (click)="onTest(mock); $event.stopPropagation()">
+				<mat-icon>bug_report</mat-icon>
+			</button>
+			<button mat-icon-button (click)="onEdit(mock); $event.stopPropagation()">
+				<mat-icon>edit</mat-icon>
+			</button>
+			<button mat-icon-button (click)="onDelete(mock.id); $event.stopPropagation()" color="warn">
+				<mat-icon>delete</mat-icon>
+			</button>
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="expandedDetail">
+		<td mat-cell *matCellDef="let mock" [attr.colspan]="columns.length">
+			<div *ngIf="expandedMock === mock" [@detailExpand]>
+				<div class="response-body-container">
+					<ngx-monaco-editor [options]="monacoOptionsReadOnly"
+									   [(ngModel)]="mock.body">
+					</ngx-monaco-editor>
+				</div>
+			</div>
+		</td>
+	</ng-container>
+	<tr mat-header-row *matHeaderRowDef="columns" class="mock-header"></tr>
+	<tr mat-row *matRowDef="let mock; columns: columns;"
+		class="mock-row"
+		[class.acc-expanded-row]="expandedMock === mock"
+		(click)="(expandedMock = expandedMock === mock ? null : mock); $event.stopPropagation()">
+	</tr>
+	<tr mat-row *matRowDef="let element; columns: ['expandedDetail']" class="response-body-row" [class.acc-expanded-row]="expandedMock === element"></tr>
+</table>
