@@ -12,6 +12,7 @@
 >- [ ] Build
 
 - [ ] **The commit messages follow the guidelines**
+- [ ] **Branch names follow naming convention**
 - [ ] **Tests have been added for the changes introduced in this PR**
 - [ ] **This contribution introduces a breaking change**
 
