@@ -6,7 +6,9 @@
     "start": "nx serve",
     "build": "nx build",
     "watch": "nx build --watch --configuration development",
-    "test": "nx test"
+    "test": "nx test",
+    "build-pack-lib": "nx run mock-builder:build && cd dist/mock-builder && npm pack",
+    "install-lib": "npm run build-pack-lib && npm install ./dist/mock-builder/mock-builder-0.0.1.tgz"
   },
   "private": true,
   "dependencies": {
