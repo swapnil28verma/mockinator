@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApiMockConfigComponent } from './api-mock-config.component';
-import { MockBuilderService, TestUtils } from "mock-builder";
+import { MockBuilderService } from '../../services';
+import { TestUtils } from '../../utils';
 import { RequestType } from "../../models/request.type";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { inject } from "@angular/core";

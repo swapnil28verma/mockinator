@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApiMockTestComponent } from './api-mock-test.component';
 import { RequestType } from "../../models/request.type";
-import { TestUtils } from "mock-builder";
+import { TestUtils } from "../../utils";
 import { HttpClient } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { of } from "rxjs";
