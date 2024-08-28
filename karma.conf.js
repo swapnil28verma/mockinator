@@ -21,7 +21,7 @@ module.exports = function (config) {
 
 
 		// list of files / patterns to exclude
-		exclude: [],
+		exclude: ['mockServiceWorker.js'],
 
 
 		// preprocess matching files before serving them to the browser
@@ -66,6 +66,10 @@ module.exports = function (config) {
 
 		// Concurrency level
 		// how many browser instances should be started simultaneously
-		concurrency: Infinity
+		concurrency: Infinity,
+
+		karmaTypescriptConfig: {
+			tsconfig: "./tsconfig.json"  // Ensure this points to your tsconfig.json
+		}
 	})
 }
