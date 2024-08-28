@@ -10,13 +10,13 @@ module.exports = function (config) {
 
 		// frameworks to use
 		// available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
-		frameworks: ['jasmine'],
+		frameworks: ['jasmine', 'karma-typescript'],
 
 
 		// list of files / patterns to load in the browser
 		files: [
-			'projects/**/*.spec.ts',
-			'src/**/*.spec.ts'
+			'projects/**/*.ts',
+			'src/**/*.ts'
 		],
 
 
@@ -26,13 +26,15 @@ module.exports = function (config) {
 
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
-		preprocessors: {},
+		preprocessors: {
+			'**/*.ts': 'karma-typescript'
+		},
 
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress'
 		// available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-		reporters: ['progress'],
+		reporters: ['progress', 'karma-typescript'],
 
 
 		// web server port
@@ -51,16 +53,10 @@ module.exports = function (config) {
 		// enable / disable watching file and executing tests whenever any file changes
 		autoWatch: true,
 
-
-		plugins: [require("karma-firefox-launcher")],
-
 		// start these browsers
 		// available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
 		browsers: [
-			"Firefox",
-			"FirefoxDeveloper",
-			"FirefoxAurora",
-			"FirefoxNightly",
+			"Firefox"
 		],
 
 
