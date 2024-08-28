@@ -2,7 +2,7 @@
 <div class="request-config-container">
 	<mat-form-field appearance="outline">
 		<mat-label>API type</mat-label>
-		<mat-select [(ngModel)]="requestType">
+		<mat-select [(ngModel)]="requestType" data-automation-id="request-type-dropdown">
 			<mat-option value="{{RequestTypeEnum.GET}}">GET</mat-option>
 			<mat-option value="{{RequestTypeEnum.PUT}}">PUT</mat-option>
 			<mat-option value="{{RequestTypeEnum.POST}}">POST</mat-option>
@@ -11,7 +11,7 @@
 	</mat-form-field>
 	<mat-form-field appearance="outline" class="request-url-field">
 		<mat-label>API URL</mat-label>
-		<input matInput [(ngModel)]="requestUrl">
+		<input matInput [(ngModel)]="requestUrl" data-automation-id="api-input-field">
 	</mat-form-field>
 </div>
 <h3>Response</h3>
@@ -22,6 +22,6 @@
 	></ngx-monaco-editor>
 </div>
 <div class="mockinator-new-mock-actions">
-	<button mat-raised-button (click)="clearMockConfiguration()">Reset</button>
-	<button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+	<button mat-raised-button (click)="clearMockConfiguration()" data-automation-id="clear-config-button">Reset</button>
+	<button mat-raised-button color="primary" (click)="onSubmit()" data-automation-id="submit-config-button">Submit</button>
 </div>

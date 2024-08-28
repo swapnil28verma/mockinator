@@ -30,8 +30,9 @@
         "polyfills": [
           "zone.js",
           "zone.js/testing"
-        ]
-      }
+        ],
+	    "karmaConfig": "./karma.conf.js"
+	  }
     }
   }
 }
