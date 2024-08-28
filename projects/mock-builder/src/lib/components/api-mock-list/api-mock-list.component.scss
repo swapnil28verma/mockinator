@@ -17,17 +17,17 @@
 		.mat-column-type {
 			display: flex;
 			justify-content: center;
-			width: 20%;
+			flex: 1;
 		}
 
 		.mat-column-url {
-			width: 70%;
+			flex: 2;
 		}
 
 		.mat-column-actions {
 			display: flex;
 			justify-content: center;
-			width: 10%;
+			flex: 1;
 		}
 	}
 }
