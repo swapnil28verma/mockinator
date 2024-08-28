@@ -19,7 +19,7 @@ describe('ApiMockConfigComponent', () => {
 
 		fixture = TestBed.createComponent(ApiMockConfigComponent);
 		component = fixture.componentInstance;
-		TestUtils.loader = TestbedHarnessEnvironment.loader(fixture);
+		TestUtils.setupTestUtils(fixture);
 		mockBuilderService = inject(MockBuilderService);
 		snackbarService = inject(MatSnackBar);
 		fixture.detectChanges();

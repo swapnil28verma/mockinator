@@ -2,15 +2,21 @@ import { HarnessLoader } from "@angular/cdk/testing";
 import { MatSelectHarness } from "@angular/material/select/testing";
 import { MatButtonHarness } from "@angular/material/button/testing";
 import { MatInputHarness } from "@angular/material/input/testing";
+import { MatTableHarness } from "@angular/material/table/testing";
+import { ComponentFixture } from "@angular/core/testing";
+import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 
 export class TestUtils {
-	private static _loader: HarnessLoader;
+	private static loader: HarnessLoader;
+	private static fixture: ComponentFixture<any>;
 
-	static get loader(): HarnessLoader {
-		return this._loader;
+	public static setupTestUtils(fixture: ComponentFixture<any>) {
+		this.fixture = fixture;
+		this.loader = TestbedHarnessEnvironment.loader(fixture);
 	}
-	static set loader(value: HarnessLoader) {
-		this._loader = value;
+
+	public static getElement(dataAutomationId: string): HTMLElement {
+		return this.fixture.debugElement.nativeElement.querySelector(`[data-automation-id=${dataAutomationId}]`);
 	}
 
 	public static async getSelectHarness(dataAutomationId: string): Promise<MatSelectHarness> {
@@ -23,6 +29,10 @@ export class TestUtils {
 
 	public static async getButtonHarness(dataAutomationId: string): Promise<MatButtonHarness> {
 		return await this.loader.getHarness(MatButtonHarness.with({ selector: `[data-automation-id='${dataAutomationId}']` }))
+	}
+
+	public static async getTableHarness(dataAutomationId: string): Promise<MatTableHarness> {
+		return await this.loader.getHarness(MatTableHarness.with({ selector: `[data-automation-id='${dataAutomationId}']` }))
 	}
 
 	public static async selectDropdownOption(option: string, dataAutomationId: string) {

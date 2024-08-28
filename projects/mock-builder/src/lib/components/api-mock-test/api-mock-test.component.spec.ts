@@ -16,6 +16,7 @@ describe('ApiMockTestComponent', () => {
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ApiMockTestComponent);
+		TestUtils.setupTestUtils(fixture);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -28,6 +29,7 @@ describe('ApiMockTestComponent', () => {
 	it('should disable clear and submit buttons when URL field is empty', async () => {
 		await setMockConfig(RequestType.PUT, '');
 		let button = await TestUtils.getButtonHarness('clear-config-button');
+
 		expect(await button.isDisabled()).toBeTrue();
 		button = await TestUtils.getButtonHarness('submit-config-button');
 		expect(await button.isDisabled()).toBeTrue();
@@ -36,6 +38,7 @@ describe('ApiMockTestComponent', () => {
 	it('should enable clear and submit buttons when URL field is not empty', async () => {
 		await setMockConfig(RequestType.PUT, 'www.mock-api.com');
 		let button = await TestUtils.getButtonHarness('clear-config-button');
+
 		expect(await button.isDisabled()).toBeFalse();
 		button = await TestUtils.getButtonHarness('submit-config-button');
 		expect(await button.isDisabled()).toBeFalse();
@@ -55,6 +58,7 @@ describe('ApiMockTestComponent', () => {
 		spyOn(httpService, 'get').and.returnValue(of("{response:'This is a mocked response'}'"));
 		await setMockConfig(RequestType.GET, 'www.mock-api.com');
 		await TestUtils.clickButton('submit-config-button');
+
 		expect(await TestUtils.getMonacoText()).toEqual("{response:'This is a mocked response'}'");
 	});
 
