@@ -12,7 +12,7 @@ module.exports = function (config) {
 			require('karma-coverage'),
 			require('@angular-devkit/build-angular/plugins/karma'),
 		],
-		exclude: ['./src/mockServiceWorker.js'],
+		exclude: ['src/mockServiceWorker.js'],
 		client: {
 			clearContext: false
 		},
@@ -27,7 +27,7 @@ module.exports = function (config) {
 		singleRun: false,
 		concurrency: Infinity,
 		karmaTypescriptConfig: {
-			tsconfig: './tsconfig.spec.json', // Make sure this points to your tsconfig.spec.json
+			tsconfig: 'projects/mock-builder/tsconfig.spec.json', // Make sure this points to your tsconfig.spec.json
 			sourceMap: true                    // Ensure source maps are enabled here too
 		}
 	})
