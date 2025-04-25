@@ -5,10 +5,12 @@ import { TestUtils } from "../../utils";
 import { HttpClient } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { of } from "rxjs";
+import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 
 describe('ApiMockTestComponent', () => {
 	let component: ApiMockTestComponent;
 	let fixture: ComponentFixture<ApiMockTestComponent>;
+	let testUtils: TestUtils;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -16,31 +18,31 @@ describe('ApiMockTestComponent', () => {
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ApiMockTestComponent);
-		TestUtils.setupTestUtils(fixture);
+		testUtils = new TestUtils(fixture.debugElement, TestbedHarnessEnvironment.loader(fixture));
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
 
 	const setMockConfig = async (type: RequestType, apiUrl: string) => {
-		await TestUtils.selectDropdownOption(type, 'request-type-dropdown');
-		await TestUtils.typeText(apiUrl, 'api-input-field');
+		await testUtils.selectDropdownOption(type, 'request-type-dropdown');
+		await testUtils.typeText(apiUrl, 'api-input-field');
 	}
 
 	it('should disable clear and submit buttons when URL field is empty', async () => {
 		await setMockConfig(RequestType.PUT, '');
-		let button = await TestUtils.getButtonHarness('clear-config-button');
+		let button = await testUtils.getButtonHarness('clear-config-button');
 
 		expect(await button.isDisabled()).toBeTrue();
-		button = await TestUtils.getButtonHarness('submit-config-button');
+		button = await testUtils.getButtonHarness('submit-config-button');
 		expect(await button.isDisabled()).toBeTrue();
 	});
 
 	it('should enable clear and submit buttons when URL field is not empty', async () => {
 		await setMockConfig(RequestType.PUT, 'www.mock-api.com');
-		let button = await TestUtils.getButtonHarness('clear-config-button');
+		let button = await testUtils.getButtonHarness('clear-config-button');
 
 		expect(await button.isDisabled()).toBeFalse();
-		button = await TestUtils.getButtonHarness('submit-config-button');
+		button = await testUtils.getButtonHarness('submit-config-button');
 		expect(await button.isDisabled()).toBeFalse();
 	});
 
@@ -48,7 +50,7 @@ describe('ApiMockTestComponent', () => {
 		const httpService = inject(HttpClient);
 		spyOn(httpService, 'put');
 		await setMockConfig(RequestType.PUT, 'www.mock-api.com');
-		await TestUtils.clickButton('submit-config-button');
+		await testUtils.clickButton('submit-config-button');
 
 		expect(httpService.put).toHaveBeenCalledWith('www.mock-api.com', {});
 	});
@@ -57,16 +59,16 @@ describe('ApiMockTestComponent', () => {
 		const httpService = inject(HttpClient);
 		spyOn(httpService, 'get').and.returnValue(of("{response:'This is a mocked response'}'"));
 		await setMockConfig(RequestType.GET, 'www.mock-api.com');
-		await TestUtils.clickButton('submit-config-button');
+		await testUtils.clickButton('submit-config-button');
 
-		expect(await TestUtils.getMonacoText()).toEqual("{response:'This is a mocked response'}'");
+		expect(await testUtils.getMonacoText()).toEqual("{response:'This is a mocked response'}'");
 	});
 
 	it('should clear fields when clicking on clear button', async () => {
 		await setMockConfig(RequestType.PUT, 'www.mock-api.com');
-		await TestUtils.clickButton('clear-config-button');
+		await testUtils.clickButton('clear-config-button');
 
-		expect(await TestUtils.getInputText('api-input-field')).toBe('');
-		expect(await TestUtils.getSelectedDropdownOption('request-type-dropdown')).toBe(RequestType.GET);
+		expect(await testUtils.getInputText('api-input-field')).toBe('');
+		expect(await testUtils.getSelectedDropdownOption('request-type-dropdown')).toBe(RequestType.GET);
 	});
 });

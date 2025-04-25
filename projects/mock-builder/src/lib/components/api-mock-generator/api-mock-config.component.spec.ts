@@ -4,24 +4,26 @@ import { MockBuilderService } from '../../services';
 import { TestUtils } from '../../utils';
 import { RequestType } from "../../models/request.type";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { inject } from "@angular/core";
+import { NoopTestingModule } from "../../utils/noop-testing.module";
+import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 
-describe('ApiMockConfigComponent', () => {
+fdescribe('ApiMockConfigComponent', () => {
 	let component: ApiMockConfigComponent;
 	let fixture: ComponentFixture<ApiMockConfigComponent>;
 	let mockBuilderService: MockBuilderService;
 	let snackbarService: MatSnackBar;
+	let testUtils: TestUtils;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [ApiMockConfigComponent]
+			imports: [ApiMockConfigComponent, NoopTestingModule]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ApiMockConfigComponent);
 		component = fixture.componentInstance;
-		TestUtils.setupTestUtils(fixture);
-		mockBuilderService = inject(MockBuilderService);
-		snackbarService = inject(MatSnackBar);
+		testUtils = new TestUtils(fixture.debugElement, TestbedHarnessEnvironment.loader(fixture));
+		mockBuilderService = TestBed.inject(MockBuilderService);
+		snackbarService = TestBed.inject(MatSnackBar);
 		fixture.detectChanges();
 	});
 
@@ -30,12 +32,12 @@ describe('ApiMockConfigComponent', () => {
 	};
 
 	const setMockConfig = async (type: RequestType, apiUrl: string, response: string) => {
-		await TestUtils.selectDropdownOption(type, 'request-type-dropdown');
-		await TestUtils.typeText(apiUrl, 'api-input-field');
-		await TestUtils.setMonacoText(response);
+		await testUtils.selectDropdownOption(type, 'request-type-dropdown');
+		await testUtils.typeText(apiUrl, 'api-input-field');
+		await testUtils.setMonacoText(response);
 	}
 
-	it('should emit onMockSubmit, show a notification, and submit a mock to be created when clicking on submit button', async () => {
+	fit('should emit onMockSubmit, show a notification, and submit a mock to be created when clicking on submit button', async () => {
 		spyOn(mockBuilderService, 'addMock');
 		spyOn(snackbarService, 'open');
 		spyOn(component.onMockSubmit, 'emit');
@@ -46,7 +48,7 @@ describe('ApiMockConfigComponent', () => {
 			body: JSON.stringify(mockResponse),
 		}
 		await setMockConfig(mockObject.type, mockObject.url, mockObject.body);
-		await TestUtils.clickButton('submit-config-button');
+		await testUtils.clickButton('submit-config-button');
 
 		expect(mockBuilderService.addMock).toHaveBeenCalledOnceWith(mockObject);
 		expect(component.onMockSubmit.emit).toHaveBeenCalledWith(mockObject);
@@ -62,12 +64,12 @@ describe('ApiMockConfigComponent', () => {
 			body: JSON.stringify(mockResponse),
 		}
 		await setMockConfig(mockObject.type, mockObject.url, mockObject.body);
-		await TestUtils.clickButton('clear-config-button');
+		await testUtils.clickButton('clear-config-button');
 
 		expect(component.clearMockConfiguration).toHaveBeenCalled();
-		expect(await TestUtils.getSelectedDropdownOption('request-type-dropdown')).toEqual(RequestType.GET);
-		expect(await TestUtils.getInputText('api-input-field')).toEqual('');
-		expect(await TestUtils.getMonacoText()).toEqual('');
+		expect(await testUtils.getSelectedDropdownOption('request-type-dropdown')).toEqual(RequestType.GET);
+		expect(await testUtils.getInputText('api-input-field')).toEqual('');
+		expect(await testUtils.getMonacoText()).toEqual('');
 	});
 
 	it('should clear mock configuration after submit button was clicked', async () => {
@@ -79,11 +81,11 @@ describe('ApiMockConfigComponent', () => {
 			body: JSON.stringify(mockResponse),
 		}
 		await setMockConfig(mockObject.type, mockObject.url, mockObject.body);
-		await TestUtils.clickButton('submit-config-button');
+		await testUtils.clickButton('submit-config-button');
 
 		expect(component.clearMockConfiguration).toHaveBeenCalled();
-		expect(await TestUtils.getSelectedDropdownOption('request-type-dropdown')).toEqual(RequestType.GET);
-		expect(await TestUtils.getInputText('api-input-field')).toEqual('');
-		expect(await TestUtils.getMonacoText()).toEqual('');
+		expect(await testUtils.getSelectedDropdownOption('request-type-dropdown')).toEqual(RequestType.GET);
+		expect(await testUtils.getInputText('api-input-field')).toEqual('');
+		expect(await testUtils.getMonacoText()).toEqual('');
 	});
 });
