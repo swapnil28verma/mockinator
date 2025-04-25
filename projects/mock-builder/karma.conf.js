@@ -7,7 +7,7 @@ module.exports = function (config) {
 		frameworks: ['jasmine', '@angular-devkit/build-angular'],
 		plugins: [
 			require('karma-jasmine'),
-			require('karma-firefox-launcher'),
+			require('karma-chrome-launcher'),
 			require('karma-jasmine-html-reporter'),
 			require('karma-coverage'),
 			require('@angular-devkit/build-angular/plugins/karma'),
@@ -21,14 +21,8 @@ module.exports = function (config) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 		autoWatch: true,
-		browsers: [
-			"Firefox"
-		],
+		browsers: ["Chrome"],
 		singleRun: false,
-		concurrency: Infinity,
-		karmaTypescriptConfig: {
-			tsconfig: 'projects/mock-builder/tsconfig.spec.json', // Make sure this points to your tsconfig.spec.json
-			sourceMap: true                    // Ensure source maps are enabled here too
-		}
+		concurrency: Infinity
 	})
 }
