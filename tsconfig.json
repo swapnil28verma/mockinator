@@ -8,9 +8,7 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noImplicitReturns": true,
 		"paths": {
-			"mock-builder": [
-				"./projects/mock-builder/src/public-api.ts"
-			]
+			"mock-builder": ["./projects/mock-builder/src/public-api.ts"]
 		},
 		"noFallthroughCasesInSwitch": true,
 		"skipLibCheck": true,

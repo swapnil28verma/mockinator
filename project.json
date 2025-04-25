@@ -30,6 +30,9 @@
 					"@angular/material/prebuilt-themes/indigo-pink.css",
 					"src/styles.css"
 				],
+				"stylePreprocessorOptions": {
+					"includePaths": ["projects/mock-builder/src/lib/styles"]
+				},
 				"scripts": []
 			},
 			"configurations": {
@@ -84,6 +87,9 @@
 				"sourceMap": true,
 				"assets": [],
 				"styles": [],
+				"stylePreprocessorOptions": {
+					"includePaths": ["projects/mock-builder/src/lib/styles"]
+				},
 				"scripts": []
 			}
 		},
