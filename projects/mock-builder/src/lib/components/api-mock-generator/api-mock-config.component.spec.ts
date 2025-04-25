@@ -7,7 +7,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { NoopTestingModule } from "../../utils/noop-testing.module";
 import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 
-fdescribe('ApiMockConfigComponent', () => {
+describe('ApiMockConfigComponent', () => {
 	let component: ApiMockConfigComponent;
 	let fixture: ComponentFixture<ApiMockConfigComponent>;
 	let mockBuilderService: MockBuilderService;
