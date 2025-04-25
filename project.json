@@ -83,7 +83,7 @@
 				"main": "./src/test.ts",
 				"tsConfig": "./tsconfig.spec.json",
 				"karmaConfig": "./karma.conf.js",
-				"polyfills": ["zone.js","zone.js/testing"],
+				"polyfills": ["zone.js"],
 				"sourceMap": true,
 				"assets": [],
 				"styles": [],

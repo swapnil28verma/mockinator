@@ -27,7 +27,7 @@
 				"main": "projects/mock-builder/src/test.ts",
 				"tsConfig": "projects/mock-builder/tsconfig.spec.json",
 				"karmaConfig": "projects/mock-builder/karma.conf.js",
-				"polyfills": ["zone.js", "zone.js/testing"],
+				"polyfills": ["zone.js"],
 				"sourceMap": true,
 				"styles": [],
 				"scripts": [],
