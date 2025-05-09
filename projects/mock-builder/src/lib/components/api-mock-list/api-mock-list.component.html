@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="savedMocks"
+<table mat-table [dataSource]="dataSource"
 	   [multiTemplateDataRows]="true"
 	   data-automation-id="mock-list-table"
 	   class="saved-mocks">
@@ -43,7 +43,7 @@
 		class="mock-row"
 		[attr.data-automation-id]="mock.id + '-row'"
 		[class.acc-expanded-row]="expandedMock === mock"
-		(click)="(expandedMock = expandedMock === mock ? null : mock); $event.stopPropagation()">
+		(click)="onRowClick(mock, $event)">
 	</tr>
 	<tr mat-row *matRowDef="let mock; columns: ['expandedDetail']" class="response-body-row" [attr.data-automation-id]="mock.id + '-response-row'" [class.acc-expanded-row]="expandedMock === mock"></tr>
 </table>

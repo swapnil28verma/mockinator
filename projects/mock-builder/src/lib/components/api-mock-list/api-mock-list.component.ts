@@ -10,7 +10,8 @@ import {
 	MatHeaderRowDef,
 	MatRow,
 	MatRowDef,
-	MatTable
+	MatTable,
+	MatTableDataSource
 } from "@angular/material/table";
 import { MatIcon } from "@angular/material/icon";
 import { MatIconButton } from "@angular/material/button";
@@ -56,12 +57,14 @@ export class ApiMockListComponent implements OnInit, OnDestroy {
 	columns = ['type', 'url', 'actions'];
 	expandedMock: RequestMock | null = null;
 
-	savedMocks: RequestMock[] = [];
+	dataSource = new MatTableDataSource<RequestMock>([]);
 
 	ngOnInit() {
 		this.mockBuilderService.savedMocks$.pipe(takeUntil(this.onDestroy$)).subscribe(savedMocks => {
-			this.savedMocks = savedMocks;
-			this.table.renderRows();
+			this.dataSource.data = savedMocks || [];
+			if (this.table) {
+				this.table.renderRows();
+			}
 		});
 	}
 
@@ -83,5 +86,10 @@ export class ApiMockListComponent implements OnInit, OnDestroy {
 	onDelete(mockId: string) {
 		this.mockBuilderService.removeMock(mockId);
 		this.snackbarService.open('Mock removed successfully', '', {duration: 5000});
+	}
+
+	onRowClick(mock: RequestMock, event: Event) {
+		this.expandedMock = this.expandedMock === mock ? null : mock;
+		event.stopPropagation();
 	}
 }
