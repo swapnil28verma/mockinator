@@ -8,7 +8,7 @@ import { of } from "rxjs";
 import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 import { NoopTestingModule } from '../../utils/noop-testing.module';
 
-fdescribe('ApiMockTestComponent', () => {
+describe('ApiMockTestComponent', () => {
 	let component: ApiMockTestComponent;
 	let fixture: ComponentFixture<ApiMockTestComponent>;
 	let testUtils: TestUtils;
